@@ -25,6 +25,15 @@
             {{--//database name, value, bootstarp class--}}
                  {{ Form::label('slug','Slugs:') }}
                  {{ Form::text('slug',null,array('class'=>'form-control','required'=>'','minlength'=> '5','maxlength'=>'255')) }}
+
+                {{Form::label('category_id','Category:')}}
+                <select class="form-control" name="category_id">
+
+                    @foreach($categories as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
+                     @endforeach
+
+                </select>
                 {{Form::label('body',"Post your thoughts:")}}
                 {{Form::textarea('body',null,array('class'=> 'form-control','required'=>''))}}
                 {{Form::submit('Post',array('class'=>'btn btn-success btn-lg btn-block', 'style' =>'margin-top: 20px;'))}}

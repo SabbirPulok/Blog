@@ -11,6 +11,9 @@
         {{Form::label('slug','Slug:',['class'=>'form-spacing -top'])}}
         {{Form::text('slug',$post->slug,['class'=>'form-control'])}}
 
+        {{Form::label('category_id',"Category: ",["class"=>'form-spacing-top'])}}
+        {{Form::select('category_id',$categories,null,['class'=>'form-control'])}}
+
         {{Form::label('body','Body:',["class"=>'form-spacing-top'])}}
         {{Form::textarea('body',$post->body,["class"=> 'form-control'])}}
     </div>

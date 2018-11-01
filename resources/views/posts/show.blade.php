@@ -10,6 +10,10 @@
         <div class="card btn-h1-spacing">
             <div class="card-body">
                 <dl>
+                    <dt>Category: </dt>
+                    <dd> <p>{{$post->category->name}}</p></dd>
+                </dl>
+                <dl>
                     <dt>URL: </dt>
                     <dd> <a href="{{ route('blog.single',$post->slug)}}">{{ url('blog/'.$post->slug)}}</a></dd>
                 </dl>

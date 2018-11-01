@@ -30,4 +30,9 @@ class AdminController extends Controller
         // return a view and pass in the above variable
         return view('admin')->withPosts($posts);
     }
+    public function show($id)
+    {
+        $post=Post::find($id);
+        return view('admin.show')->withPost($post);
+    }
 }

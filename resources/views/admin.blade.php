@@ -31,12 +31,20 @@
                         <td>{{ $post->title }}</td>
                         <td>{{ substr($post->body,0,50) }}{{strlen($post->body)>50?"...":""}}</td>
                         <td>{{ date('M j, Y',strtotime($post->created_at)) }}</td>
+
                         <td>
-                            {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'DELETE']) !!}
+                            <div class="row">
+                                <div class="col-sm-6">
+                                     <a href="{{route('admin.show',$post->id)}}" class="btn btn-info btn-block">View</a>
+                                </div>
+                                <div class="col-sm-6">
+                                    {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'DELETE']) !!}
 
-                            {!! Form::submit('Delete',['class' => 'btn btn-danger btn-block']) !!}
+                                    {!! Form::submit('Delete',['class' => 'btn btn-danger btn-block']) !!}
 
-                            {!! Form::close() !!}
+                                    {!! Form::close() !!}
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
