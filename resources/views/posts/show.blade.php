@@ -4,7 +4,15 @@
 <div class="row">
     <div class="col-md-8">
         <h1>{{ $post->title }}</h1>
+
         <p class="lead"> {{ $post->body }}</p>
+        <hr>
+        <div class="tags">
+            @foreach ($post->tags as $tag)
+                <a href="#" class="btn btn-sm btn-info">{{ $tag->name }}</a>
+                {{--<div class="d-inline p-2 bg-info text-white">{{ $tag->name }}</div>--}}
+            @endforeach
+        </div>
     </div>
     <div class="col-md-4">
         <div class="card btn-h1-spacing">

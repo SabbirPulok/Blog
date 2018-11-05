@@ -69,6 +69,8 @@ Route::group(['middleware'=>['web']],function (){
 
     //categories
     Route::resource('categories','CategoryController',['except'=>['create']]);
+    //tags
+    Route::resource('tags','TagController',['except'=>['create']]);
 
     Route::get('blog',['as'=>'blog.index','uses'=>'BlogController@getIndex']);
     //domain.com/blog/slug-goes-here

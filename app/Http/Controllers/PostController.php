@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Category;
+use App\Tag;
 use Illuminate\Http\Request;
 use Session;
 
@@ -35,7 +36,8 @@ class PostController extends Controller
     public function create()
     {
         $categories=Category::all();
-        return view('posts.create')->withCategories($categories);
+        $tags=Tag::all();
+        return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -46,6 +48,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+       // dd($request);
         //validate
         $this->validate($request,array(
             'title'=>'required|max:200',
@@ -61,6 +64,14 @@ class PostController extends Controller
         $post->body = $request->body;
 
         $post->save();
+        if(isset($request->tags))
+        {
+            $post->tags()->sync($request->tags,false);
+        }
+         else
+         {
+             $post->tags()->sync(array());
+         }
         Session::flash('success','Your post has been successfully submitted.');
 
         //redirect to another page
@@ -89,15 +100,22 @@ class PostController extends Controller
     {
         //find the post in the database and save it as a variable
         $post=Post::find($id);
+
         $categories= Category::all();
         $cats = array();
         foreach($categories as $category)
             {
                 $cats[$category->id]=$category->name;
             }
-
+        //find the tags
+        $tags=Tag::all();
+        $tag2=array();
+        foreach($tags as $tag)
+        {
+            $tag2[$tag->id]=$tag->name;
+        }
         //return the view and pass in the var as we previously created
-        return view('posts.edit')->withPost($post)->withCategories($cats);
+        return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tag2);
     }
 
     /**
@@ -136,6 +154,15 @@ class PostController extends Controller
             $post->body = $request->input('body');
 
             $post->save();
+        if(isset($request->tags))
+        {
+            $post->tags()->sync($request->tags);
+        }
+        else
+        {
+            $post->tags()->sync(array());
+        }
+
         //set flash data with success message
         Session::flash('success',"Successfully Updated the post.");
         //redirect with flash data to posts.show
@@ -151,6 +178,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post =Post::find($id);
+        $post->tags->detach();
         $post->delete();
         Session::flash('success',"Your post has been deleted successfully.");
         return redirect()->route('posts.index');

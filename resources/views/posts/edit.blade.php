@@ -1,5 +1,12 @@
 @extends('main')
 @section('title','| Edit Blog Posts')
+
+@section('stylesheets')
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-md-8">
@@ -13,6 +20,9 @@
 
         {{Form::label('category_id',"Category: ",["class"=>'form-spacing-top'])}}
         {{Form::select('category_id',$categories,null,['class'=>'form-control'])}}
+
+        {{Form::label('tags',"Tags: ",["class"=>'form-spacing-top'])}}
+        {{Form::select('tags[]',$tags,null,['class'=>'form-control js-basic-multiple','multiple'=>'multiple'])}}
 
         {{Form::label('body','Body:',["class"=>'form-spacing-top'])}}
         {{Form::textarea('body',$post->body,["class"=> 'form-control'])}}
@@ -44,4 +54,13 @@
     </div>
     {!! Form::close()!!}
 </div>
+@endsection
+
+@section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.js-basic-multiple').select2();
+        });
+    </script>
 @endsection
