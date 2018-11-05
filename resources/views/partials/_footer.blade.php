@@ -1,2 +1,2 @@
 <hr>
-<p class="text-center">Copyright TechLab Paco -- All rights reserved</p>
+<p class="text-center">Copyright SabbirPulok -- All rights reserved</p>

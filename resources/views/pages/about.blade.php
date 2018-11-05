@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <h1>About Me</h1>
-            <p>Lorel ispum Lorel ispum  Lorel ispum  Lorel ispum </p>
+            <p>Sabbir Pulok </p>
         </div>
     </div>
     {{--end header row--}}
