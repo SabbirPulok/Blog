@@ -13,6 +13,31 @@
                 {{--<div class="d-inline p-2 bg-info text-white">{{ $tag->name }}</div>--}}
             @endforeach
         </div>
+        <div class="backend-comments" style="margin-top:10px;">
+            <h3>Comments  <small>{{ $post->comments()->count() }} total</small></h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name: </th>
+                    <th>Email: </th>
+                    <th>Comment: </th>
+                </tr>
+                </thead>
+                <tbody>
+                    @foreach($post->comments as $comment)
+                        <tr>
+                        <td>{{$comment->name}}</td>
+                        <td>{{$comment->email}}</td>
+                        <td>{{$comment->comment}}</td>
+                        <td>
+                            <a href="{{route('comments.edit',$comment->id)}}" class="btn btn-xs btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="{{route('comments.delete',$comment->id)}}" class ="btn btn-xs btn-danger"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="col-md-4">
         <div class="card btn-h1-spacing">

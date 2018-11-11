@@ -71,7 +71,27 @@ Route::group(['middleware'=>['web']],function (){
     Route::resource('categories','CategoryController',['except'=>['create']]);
     //tags
     Route::resource('tags','TagController',['except'=>['create']]);
-
+    //comments
+    Route::post('comments/{post_id}',[
+        'uses'=>'CommentsController@store',
+        'as'=>'comments.store'
+    ]);
+    Route::get('comments/{post_id}/edit',[
+        'uses'=>'CommentsController@edit',
+        'as'=>'comments.edit'
+    ]);
+    Route::put('comments/{post_id}',[
+        'uses'=>'CommentsController@update',
+        'as'=>'comments.update'
+    ]);
+    Route::delete('comments/{post_id}',[
+        'uses'=>'CommentsController@destroy',
+        'as'=>'comments.destroy'
+    ]);
+    Route::get('comments/{post_id}/delete',[
+        'uses'=>'CommentsController@delete',
+        'as'=>'comments.delete'
+    ]);
     Route::get('blog',['as'=>'blog.index','uses'=>'BlogController@getIndex']);
     //domain.com/blog/slug-goes-here
    Route::get('blog/{slug}',['as'=>'blog.single','uses'=>'BlogController@getSingle'])->where('slug','[\w\d\-\_]+');

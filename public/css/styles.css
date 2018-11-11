@@ -22,3 +22,48 @@
 {
     margin-right: 15px;
 }
+.author-image
+{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    float:left;
+}
+.author-name
+{
+    float: left;
+    margin-left: 15px;
+
+}
+.author-name>h4
+{
+    margin: 10px 0px;
+
+}
+.author-time
+{
+    font-size:14px;
+    font-family: Merriweather Sans;
+    color:#aaa;
+}
+.comment
+{
+    margin-top: 15px  ;
+    margin-bottom: 45px;
+}
+.comment-title
+{
+    margin-bottom: 45px;
+}
+.comment-title>span
+{
+    margin-right: 15px;
+    color: #005cbf;
+}
+.comment-content
+{
+    clear: both;
+    margin-left: 65px;
+    font-size: 18px;
+    line-height: 1.3em;
+}
